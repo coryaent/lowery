@@ -6,10 +6,55 @@
 
 ## Usage
 Note that the below example should not be considered secure under any circumstances and is not intended to be used in any way; it is included here for documentary purposes only.
+```yaml
+version: '3.7'
 
-### Docker Swarm
+services:
 
-### Redis
+  socket-link:
+    image: drakulix/shipwreck
+    command: >
+      --to="http://0.0.0.0:2375"
+    networks:
+      - encrypted-overlay
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - "node.role==manager"
+    
+  reverse-proxy:
+    image: lucaslorentz/caddy-docker-proxy
+    environment:
+      CADDY_INGRESS_NETWORKS: www
+      DOCKER_API_VERSION: 1.37
+      DOCKER_HOST: http://socket-link:2375
+    networks:
+      - encrypted-overlay
+      - www
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - data:/data
+    deploy:
+      placement:
+        constraints:
+          - "node.id==390nbmpc7usaf568ng4zhm1yk"
+          
+networks:
+  encrypted-overlay:
+    driver: overlay
+    driver_opts:
+      encrypted: "true"
+  www:
+    external: true
+
+volumes:
+  data:
+```
 
 ## Recognizing
 - [Gamalan](https://github.com/gamalan) for [Caddy Cluster / Certmagic TLS cluster support for Redis](https://github.com/gamalan/caddy-tlsredis)
