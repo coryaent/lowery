@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y apt-transport-https curl && \
 		--with github.com/gamalan/caddy-tlsredis
 		
 # Default Certificates 
-FROM alpine:3.11 AS alpine
+FROM alpine:3.14 AS alpine
 RUN apk add -U --no-cache ca-certificates
 
 #####################
