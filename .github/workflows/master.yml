@@ -41,7 +41,7 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags:  coryagroup/lowery:latest
+          tags:  stevecorya/lowery:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
@@ -50,7 +50,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-          repository: coryagroup/lowery
+          repository: stevecorya/lowery
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
