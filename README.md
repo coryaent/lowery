@@ -6,7 +6,8 @@
 
 ## Usage
 Note that the below example should not be considered secure under any circumstances and is not intended to be used in any way; it is included here for documentary purposes only.
-```yamlversion: '3.7'
+```yaml
+version: '3.7'
 x-common-env: &common-env
   CADDY_CONTROLLER_NETWORK: 10.200.200.0/24
   CADDY_INGRESS_NETWORKS: www
