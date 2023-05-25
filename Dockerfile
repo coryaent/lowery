@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y apt-transport-https curl && \
 	xcaddy build \
 		--output /usr/local/bin/caddy \
 		--with github.com/lucaslorentz/caddy-docker-proxy/plugin/v2 \
-		--with github.com/gamalan/caddy-tlsredis
+	    --with github.com/gamalan/caddy-tlsredis
+        --with https://github.com/yroc92/postgres-storage
 		
 # Default Certificates 
 FROM alpine:3.14 AS alpine
