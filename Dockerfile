@@ -4,7 +4,7 @@ FROM golang:buster AS caddy-compiler
 WORKDIR /usr/local/src
 
 RUN apt-get update && apt-get install -y debian-keyring debian-archive-keyring apt-transport-https curl && \
-	curl -1sLf 'https://dl.cloudsmith.io/public/caddy/xcaddy/gpg.key' | apt-key add - && \
+	curl -1sLf 'https://dl.cloudsmith.io/public/caddy/xcaddy/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-xcaddy-archive-keyring.gpg && \
 	curl -1sLf 'https://dl.cloudsmith.io/public/caddy/xcaddy/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-xcaddy.list && \
 	apt-get update && \
 	apt-get install -y xcaddy && \
