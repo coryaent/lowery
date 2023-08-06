@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y debian-keyring debian-archive-keyring a
 		--output /usr/local/bin/caddy \
 		--with github.com/shcorya/caddy-docker-proxy \
 	    --with github.com/gamalan/caddy-tlsredis \
-        --with github.com/yroc92/postgres-storage
 		
 # Default Certificates 
 FROM alpine:3.14 AS alpine
@@ -31,8 +30,6 @@ WORKDIR /usr/local/src
 
 COPY --from=caddy-compiler /usr/local/bin/caddy /usr/local/bin/caddy
 COPY --from=alpine /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-
-COPY ./Caddyfile ./Caddyfile
 
 ENTRYPOINT ["/usr/local/bin/caddy"]
 
