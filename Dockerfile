@@ -11,8 +11,8 @@ RUN apt-get update && apt-get install -y debian-keyring debian-archive-keyring a
 	xcaddy build \
 		--output /usr/local/bin/caddy \
 		--with github.com/shcorya/caddy-docker-proxy \
-		--with github.com/gamalan/caddy-tlsredis \
-		
+		--with github.com/gamalan/caddy-tlsredis
+
 # Default Certificates 
 FROM alpine:3.14 AS alpine
 RUN apk add -U --no-cache ca-certificates
