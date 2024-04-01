@@ -5,7 +5,8 @@ RUN xcaddy build \
     --with github.com/lucaslorentz/caddy-docker-proxy/v2 \
     --with github.com/gamalan/caddy-tlsredis \
     --with github.com/caddy-dns/gandi \
-    --with github.com/caddyserver/cache-handler
+    --with github.com/caddyserver/cache-handler \
+    --with github.com/greenpau/go-authcrunch
 
 FROM caddy:${CADDY_VERSION}-alpine
 
