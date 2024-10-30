@@ -5,6 +5,7 @@ RUN xcaddy build \
     --with github.com/lucaslorentz/caddy-docker-proxy/v2 \
     --with github.com/gamalan/caddy-tlsredis \
     --with github.com/caddy-dns/gandi \
+    --with github.com/caddy-dns/desec \
     --with github.com/caddyserver/cache-handler \
     --with github.com/greenpau/go-authcrunch \
     --with github.com/root-sector/caddy-storage-mongodb
